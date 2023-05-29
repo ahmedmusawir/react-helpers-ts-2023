@@ -18,6 +18,7 @@ import PageDaisyUI from "./pages/PageDaisyUI";
 import StatePage from "./pages/StatePage";
 import FormsPage from "./pages/FormsPage";
 import ExpensePage from "./pages/ExpensePage";
+import DataFetchPage from "./pages/DataFetchPage";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path="/states" element={<StatePage />} />
               <Route path="/forms" element={<FormsPage />} />
               <Route path="/expense" element={<ExpensePage />} />
+              <Route path="/data" element={<DataFetchPage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>
           </Main>
