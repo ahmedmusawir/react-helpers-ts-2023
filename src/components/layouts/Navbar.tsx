@@ -45,64 +45,60 @@ const Navbar = ({ className }: Props) => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <div className="PART ONE">
-              <div className="dropdown">
-                <li tabIndex={0} className="">
-                  Part One
+          <div className="PART ONE">
+            <div className="dropdown">
+              <li tabIndex={0} className="mr-5">
+                Part One
+              </li>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to={"/page-two"}>Mosh One</Link>
                 </li>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to={"/page-two"}>Mosh One</Link>
-                  </li>
-                  <li>
-                    <Link to={"/expense"}>Expense</Link>
-                  </li>
-                  <li>
-                    <Link to={"/states"}>States</Link>
-                  </li>
-                  <li>
-                    <Link to={"/forms"}>Forms</Link>
-                  </li>
-                  <li>
-                    <Link to={"/data"}>Data Fetch</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="PART TWO">
-              <div className="dropdown">
-                <li tabIndex={0} className="">
-                  Part Two
+                <li>
+                  <Link to={"/expense"}>Expense</Link>
                 </li>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to={"/page-two"}>Mosh One</Link>
-                  </li>
-                  <li>
-                    <Link to={"/expense"}>Expense</Link>
-                  </li>
-                  <li>
-                    <Link to={"/states"}>States</Link>
-                  </li>
-                  <li>
-                    <Link to={"/forms"}>Forms</Link>
-                  </li>
-                  <li>
-                    <Link to={"/data"}>Data Fetch</Link>
-                  </li>
-                </ul>
-              </div>
+                <li>
+                  <Link to={"/states"}>States</Link>
+                </li>
+                <li>
+                  <Link to={"/forms"}>Forms</Link>
+                </li>
+                <li>
+                  <Link to={"/data"}>Data Fetch</Link>
+                </li>
+              </ul>
             </div>
-          </li>
+          </div>
+          <div className="PART TWO">
+            <ul className="dropdown">
+              <li tabIndex={0} className="">
+                Part Two
+              </li>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to={"/page-two"}>Mosh One</Link>
+                </li>
+                <li>
+                  <Link to={"/expense"}>Expense</Link>
+                </li>
+                <li>
+                  <Link to={"/states"}>States</Link>
+                </li>
+                <li>
+                  <Link to={"/forms"}>Forms</Link>
+                </li>
+                <li>
+                  <Link to={"/data"}>Data Fetch</Link>
+                </li>
+              </ul>
+            </ul>
+          </div>
         </ul>
       </div>
       <div className="navbar-end">
