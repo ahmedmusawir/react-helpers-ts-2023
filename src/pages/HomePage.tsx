@@ -1,4 +1,5 @@
 import { Container, Row, Box } from "../components/layouts";
+import PostList from "../react-query/PostList";
 import TodoForm from "../react-query/TodoForm";
 import TodoList from "../react-query/TodoList";
 
@@ -12,6 +13,14 @@ const HomePage = () => {
           <TodoList />
 
           <hr />
+        </Box>
+        <Box className={"p-3"}>
+          <h2>React Query w/ Params</h2>
+          <PostList />
+        </Box>
+        <Box className={"p-3"}>
+          <h2>React Query w/ Params</h2>
+          <PostList />
         </Box>
       </Row>
     </Container>

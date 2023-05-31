@@ -8,7 +8,7 @@ import {
   Container,
   Footerbar,
 } from "./components/layouts";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import Demo from "./pages/Demo";
 import NotFoundPage from "./pages/NotFoundPage";
 import SendEmail from "./pages/SendEmail";
@@ -36,7 +36,7 @@ function App() {
           </Header>
           <Main>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/demo" element={<Demo />} />
               <Route path="/page-one" element={<PageDaisyUI />} />
               <Route path="/page-two" element={<MoshPage />} />

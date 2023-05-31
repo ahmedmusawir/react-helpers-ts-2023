@@ -6,18 +6,19 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 3,
-      cacheTime: 300_000, //5m
-      staleTime: 10 * 1000, //10s
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      refetchOnMount: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       retry: 3,
+//       cacheTime: 300_000, //5m
+//       staleTime: 10 * 1000, //10s
+//       refetchOnWindowFocus: false,
+//       refetchOnReconnect: false,
+//       refetchOnMount: false,
+//     },
+//   },
+// });
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
