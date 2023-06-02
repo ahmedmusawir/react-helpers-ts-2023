@@ -1,15 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CACHE_KEY_TODOS, NewTodo, Todo } from "../../constants";
-import APIClient from "../services/apiClient";
-
-const apiClient = new APIClient<Todo, NewTodo>("/todos");
+import { CACHE_KEY_TODOS } from "../../constants";
+import todoService from "../services/todoService";
 
 const useDeleteTodos = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: number) => {
-      // console.log("ID in del hook", id);
-      return apiClient.delete(id);
+      return todoService.delete(id);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(CACHE_KEY_TODOS);

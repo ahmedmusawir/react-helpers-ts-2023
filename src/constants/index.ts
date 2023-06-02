@@ -29,3 +29,10 @@ export interface PostQuery {
 export interface PostQueryLoadMore {
   pageSize: number;
 }
+
+// FOR USE UPDATE TODOS
+
+export interface UpdateTodoParams {
+  id: number;
+  updates: Partial<Todo>;
+}
