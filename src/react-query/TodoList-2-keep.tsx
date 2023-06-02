@@ -1,12 +1,10 @@
 import useDeleteTodos from "./hooks/useDeleteTodos";
 import useTodos from "./hooks/useTodos";
-import useUpdateTodos from "./hooks/useUpdateTodos";
 
 const TodoList = () => {
   const { data: todos, error, isLoading } = useTodos();
 
   const { mutateAsync } = useDeleteTodos();
-  const handleUpdate = useUpdateTodos();
 
   const handleDelete = async (id: number) => {
     try {
@@ -50,22 +48,6 @@ const TodoList = () => {
       <ul className="list-group">
         {todos?.map((todo) => (
           <li key={todo.id} className="list-group-item flex justify-between">
-            <div className="todo mr-4">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                id={`box-${todo.id}`}
-                className="form-control"
-                onChange={
-                  () =>
-                    handleUpdate.mutate({
-                      id: todo.id,
-                      updates: { completed: !todo.completed },
-                    })
-                  // handleUpdate.mutate({ ...todo, completed: !todo.completed })
-                }
-              />
-            </div>
             {todo.title}{" "}
             <button
               className="btn btn-warning"

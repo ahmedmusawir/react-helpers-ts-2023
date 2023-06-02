@@ -1,21 +1,13 @@
-import useDeleteTodos from "./hooks/useDeleteTodos";
-import useTodos from "./hooks/useTodos";
-import useUpdateTodos from "./hooks/useUpdateTodos";
+import React from "react";
+import { useState } from "react";
+import usePostsLoadMore from "./hooks/usePostsLoadMore";
 
-const TodoList = () => {
-  const { data: todos, error, isLoading } = useTodos();
+const PostListLoadMore = () => {
+  const pageSize = 5;
+  const { data, error, isLoading, fetchNextPage, isFetchingNextPage } =
+    usePostsLoadMore({ pageSize });
 
-  const { mutateAsync } = useDeleteTodos();
-  const handleUpdate = useUpdateTodos();
-
-  const handleDelete = async (id: number) => {
-    try {
-      await mutateAsync(id);
-      console.log("Todo deleted successfully");
-    } catch (err) {
-      console.log("An error occurred:", err);
-    }
-  };
+  if (error) return <p>{error.message}</p>;
 
   if (isLoading)
     return (
@@ -42,42 +34,31 @@ const TodoList = () => {
       </div>
     );
 
-  if (error) return <p>{error.message}</p>;
-
   return (
     <>
-      <h4>Todos</h4>
+      <h4>Posts</h4>
+
       <ul className="list-group">
-        {todos?.map((todo) => (
-          <li key={todo.id} className="list-group-item flex justify-between">
-            <div className="todo mr-4">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                id={`box-${todo.id}`}
-                className="form-control"
-                onChange={
-                  () =>
-                    handleUpdate.mutate({
-                      id: todo.id,
-                      updates: { completed: !todo.completed },
-                    })
-                  // handleUpdate.mutate({ ...todo, completed: !todo.completed })
-                }
-              />
-            </div>
-            {todo.title}{" "}
-            <button
-              className="btn btn-warning"
-              onClick={() => handleDelete(todo.id)}
-            >
-              Delete <span className="badge badge-primary">{todo.id}</span>
-            </button>
-          </li>
+        {data.pages?.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.map((post) => (
+              <li key={post.id} className="list-group-item">
+                {post.title}
+              </li>
+            ))}
+          </React.Fragment>
         ))}
       </ul>
+
+      <button
+        className="btn"
+        onClick={() => fetchNextPage()}
+        disabled={isFetchingNextPage}
+      >
+        {isFetchingNextPage ? "Loading..." : "Load More"}
+      </button>
     </>
   );
 };
 
-export default TodoList;
+export default PostListLoadMore;

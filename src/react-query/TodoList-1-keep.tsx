@@ -1,21 +1,37 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CACHE_KEY_TODOS, NewTodo, Todo } from "../constants";
+
 import useDeleteTodos from "./hooks/useDeleteTodos";
 import useTodos from "./hooks/useTodos";
-import useUpdateTodos from "./hooks/useUpdateTodos";
+import APIClient from "./services/apiClient";
 
 const TodoList = () => {
   const { data: todos, error, isLoading } = useTodos();
 
-  const { mutateAsync } = useDeleteTodos();
-  const handleUpdate = useUpdateTodos();
+  // const { mutateAsync } = useDeleteTodos();
+  const queryClient = useQueryClient();
+
+  const apiClient = new APIClient<Todo, NewTodo>("/todos");
+
+  const deleteTodoMutation = useMutation(apiClient.delete, {
+    onSuccess: () => {
+      // Invalidates cache and refetch
+      queryClient.invalidateQueries(CACHE_KEY_TODOS);
+      queryClient.refetchQueries(CACHE_KEY_TODOS);
+    },
+  });
 
   const handleDelete = async (id: number) => {
-    try {
-      await mutateAsync(id);
-      console.log("Todo deleted successfully");
-    } catch (err) {
-      console.log("An error occurred:", err);
-    }
+    // try {
+    //   await mutateAsync(id);
+    //   console.log("Todo deleted successfully");
+    // } catch (err) {
+    //   console.log("An error occurred:", err);
+    // }
+    deleteTodoMutation.mutate(id);
   };
+
+  // console.log({ todos });
 
   if (isLoading)
     return (
@@ -50,22 +66,6 @@ const TodoList = () => {
       <ul className="list-group">
         {todos?.map((todo) => (
           <li key={todo.id} className="list-group-item flex justify-between">
-            <div className="todo mr-4">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                id={`box-${todo.id}`}
-                className="form-control"
-                onChange={
-                  () =>
-                    handleUpdate.mutate({
-                      id: todo.id,
-                      updates: { completed: !todo.completed },
-                    })
-                  // handleUpdate.mutate({ ...todo, completed: !todo.completed })
-                }
-              />
-            </div>
             {todo.title}{" "}
             <button
               className="btn btn-warning"
