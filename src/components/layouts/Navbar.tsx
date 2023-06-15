@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { useCounterStore } from "../../state-management/zustand/store";
 import "./Navbar.scss";
 
 interface Props {
@@ -7,6 +7,9 @@ interface Props {
 }
 
 const Navbar = ({ className }: Props) => {
+  // FOLLOWING IS TO ISOLATE THE COUNTER SO THAT WHEN MAX IS UPDATED
+  // THE NAVBAR WON'T RE-RENDER
+  const counter = useCounterStore((store) => store.counter);
   return (
     <div className={`navbar ${className}`}>
       <div className="navbar-start">
@@ -102,6 +105,7 @@ const Navbar = ({ className }: Props) => {
         </ul>
       </div>
       <div className="navbar-end">
+        <span className="badge badge-warning mr-4">{counter}</span>
         <Link to={"/demo"} className="btn">
           Demo
         </Link>

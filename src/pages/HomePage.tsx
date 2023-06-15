@@ -12,6 +12,8 @@ import CustomProvider from "../state-management/provider/CustomProvider";
 import customTasksReducer from "../state-management/reducers/customTasksReducer";
 import itemsReducer from "../state-management/reducers/itemsReducer";
 import TaskList from "../state-management/TaskList";
+import Counter from "../state-management/zustand/Counter";
+import LoginStatus from "../state-management/zustand/LoginStatus";
 
 const HomePage = () => {
   // const { tasks, dispatch } = useContext(TasksContext);
@@ -25,12 +27,18 @@ const HomePage = () => {
       <Row className={"grid grid-cols-1 sm:grid-cols-2  gap-1 prose"}>
         <Box className={"p-3"}>
           <h2>React Reducers</h2>
+          <h5 className="p-5">* Basic Task Reducer Implementation</h5>
           <TaskList />
           <hr />
         </Box>
         <NewTasksContext.Provider value={{ tasks, dispatch }}>
           <Box className={"p-3"}>
             <h2>React Context</h2>
+            <h5 className="p-5">
+              * Raw Context Implementation shows state sharing between
+              NewTaskList and OtherList
+            </h5>
+
             <NewTaskList />
             <OtherList />
             <hr />
@@ -41,6 +49,11 @@ const HomePage = () => {
           <CustomProvider>
             <Box className={"p-3"}>
               <h2>Custom Context Provider</h2>
+              <h5 className="p-5">
+                * Shows custom context CustomProvider implementation with new
+                Items state. Also AuthProvider was implemented
+              </h5>
+
               <ComponentOne />
               <ItemList />
               <hr />
@@ -50,7 +63,8 @@ const HomePage = () => {
         </AuthProvider>
         <Box className={"p-3"}>
           <h2>Zustand</h2>
-
+          <Counter />
+          <LoginStatus />
           <hr />
         </Box>
       </Row>
