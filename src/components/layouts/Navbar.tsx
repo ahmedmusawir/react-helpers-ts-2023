@@ -82,10 +82,10 @@ const Navbar = ({ className }: Props) => {
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link to={"/page-two"}>Mosh One</Link>
+                  <Link to={"/react-query"}>React Query</Link>
                 </li>
-                <li>
-                  <Link to={"/expense"}>Expense</Link>
+                {/* <li>
+                  <Link to={"/state"}>State Management</Link>
                 </li>
                 <li>
                   <Link to={"/states"}>States</Link>
@@ -95,7 +95,7 @@ const Navbar = ({ className }: Props) => {
                 </li>
                 <li>
                   <Link to={"/data"}>Data Fetch</Link>
-                </li>
+                </li> */}
               </ul>
             </ul>
           </div>

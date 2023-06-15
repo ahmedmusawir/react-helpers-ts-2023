@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import CustomProvider from "./state-management/provider/CustomProvider";
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({

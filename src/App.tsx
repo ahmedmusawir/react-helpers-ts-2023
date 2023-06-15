@@ -19,6 +19,7 @@ import StatePage from "./pages/StatePage";
 import FormsPage from "./pages/FormsPage";
 import ExpensePage from "./pages/ExpensePage";
 import DataFetchPage from "./pages/DataFetchPage";
+import ReactQueryPage from "./pages/ReactQueryPage";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <Route path="/forms" element={<FormsPage />} />
               <Route path="/expense" element={<ExpensePage />} />
               <Route path="/data" element={<DataFetchPage />} />
+              <Route path="/react-query" element={<ReactQueryPage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>
           </Main>
